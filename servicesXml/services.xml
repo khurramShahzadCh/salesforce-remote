@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<services xmlns="http://www.demandware.com/xml/impex/services/2014-09-26">
+    <service-credential service-credential-id="inventory.update.credentials">
+        <url/>
+        <user-id/>
+        <password encrypted="true" encryption-type="common.export">wa/SJij4apIapFDApmot5gvVzZ9N0gJF/BSWC6p9oDc=</password>
+    </service-credential>
+
+    <service-credential service-credential-id="ocapi.auth.cred">
+        <url>https://xyz.dx.commercecloud.salesforce.com//dw/oauth2/access_token</url>
+        <user-id/>
+        <password encrypted="true" encryption-type="common.export">+lXvNcoU+Wg+OyTJ1pv0KXpZCz/GFbrhRxEF9kEvgtk=</password>
+    </service-credential>
+
+    <service-credential service-credential-id="ocapi.internal.cred">
+        <url>https://xyz.dx.commercecloud.salesforce.com//s/-/dw/data/v23_1/</url>
+        <user-id/>
+        <password encrypted="true" encryption-type="common.export">gssa+7WtCI7riv06swD2yHh4WDoguq+5y5VZ19CVUDI=</password>
+    </service-credential>
+
+    <service-credential service-credential-id="rating.reviews.credentials">
+        <url>https://xyz.com</url>
+        <user-id/>
+        <password encrypted="true" encryption-type="common.export">rg6j16skm7ATtDZqzHVI5pa/NETyZCJbmbJnyjThE9g=</password>
+    </service-credential>
+
+    <service-profile service-profile-id="inventory.update.profile">
+        <timeout-millis>1000</timeout-millis>
+        <rate-limit-enabled>false</rate-limit-enabled>
+        <rate-limit-calls>0</rate-limit-calls>
+        <rate-limit-millis>0</rate-limit-millis>
+        <cb-enabled>true</cb-enabled>
+        <cb-calls>0</cb-calls>
+        <cb-millis>0</cb-millis>
+    </service-profile>
+
+    <service-profile service-profile-id="ocapi.auth.prof">
+        <timeout-millis>1000</timeout-millis>
+        <rate-limit-enabled>false</rate-limit-enabled>
+        <rate-limit-calls>0</rate-limit-calls>
+        <rate-limit-millis>0</rate-limit-millis>
+        <cb-enabled>false</cb-enabled>
+        <cb-calls>0</cb-calls>
+        <cb-millis>0</cb-millis>
+    </service-profile>
+
+    <service-profile service-profile-id="ocapi.internal.prof">
+        <timeout-millis>5000</timeout-millis>
+        <rate-limit-enabled>false</rate-limit-enabled>
+        <rate-limit-calls>0</rate-limit-calls>
+        <rate-limit-millis>0</rate-limit-millis>
+        <cb-enabled>false</cb-enabled>
+        <cb-calls>0</cb-calls>
+        <cb-millis>0</cb-millis>
+    </service-profile>
+
+    <service-profile service-profile-id="rating.reviews.profile">
+        <timeout-millis>1000</timeout-millis>
+        <rate-limit-enabled>false</rate-limit-enabled>
+        <rate-limit-calls>0</rate-limit-calls>
+        <rate-limit-millis>0</rate-limit-millis>
+        <cb-enabled>true</cb-enabled>
+        <cb-calls>0</cb-calls>
+        <cb-millis>0</cb-millis>
+    </service-profile>
+
+    <service service-id="http.inventory.update">
+        <service-type>HTTP</service-type>
+        <enabled>true</enabled>
+        <log-prefix>inventoryUpdate</log-prefix>
+        <comm-log-enabled>false</comm-log-enabled>
+        <force-prd-enabled>true</force-prd-enabled>
+        <mock-mode-enabled>true</mock-mode-enabled>
+        <profile-id>inventory.update.profile</profile-id>
+        <credential-id>inventory.update.credentials</credential-id>
+    </service>
+
+    <service service-id="http.ocapi.auth">
+        <service-type>HTTP</service-type>
+        <enabled>true</enabled>
+        <log-prefix>ocapi</log-prefix>
+        <comm-log-enabled>false</comm-log-enabled>
+        <force-prd-enabled>true</force-prd-enabled>
+        <mock-mode-enabled>false</mock-mode-enabled>
+        <profile-id>ocapi.auth.prof</profile-id>
+        <credential-id>ocapi.auth.cred</credential-id>
+    </service>
+
+    <service service-id="http.ocapi.internal">
+        <service-type>HTTP</service-type>
+        <enabled>true</enabled>
+        <log-prefix>ocapi</log-prefix>
+        <comm-log-enabled>false</comm-log-enabled>
+        <force-prd-enabled>true</force-prd-enabled>
+        <mock-mode-enabled>false</mock-mode-enabled>
+        <profile-id>ocapi.internal.prof</profile-id>
+        <credential-id>ocapi.internal.cred</credential-id>
+    </service>
+
+    <service service-id="http.rating.reviews">
+        <service-type>HTTP</service-type>
+        <enabled>true</enabled>
+        <log-prefix>rantingAndReviews</log-prefix>
+        <comm-log-enabled>false</comm-log-enabled>
+        <force-prd-enabled>true</force-prd-enabled>
+        <mock-mode-enabled>true</mock-mode-enabled>
+        <profile-id>rating.reviews.profile</profile-id>
+        <credential-id>rating.reviews.credentials</credential-id>
+    </service>
+
+</services>

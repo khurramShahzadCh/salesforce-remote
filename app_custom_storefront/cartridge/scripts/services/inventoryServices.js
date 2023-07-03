@@ -14,13 +14,16 @@ var inventoryServices  = LocalServiceRegistry.createService("http.inventory.upda
     },
 
     parseResponse: function(svc, client) {
-		return JSON.parse(client.getText());;
+		return client.text;
 	},
-    mockExec: function (svc, client) {
+    mockCall: function () {
         return {
             statusCode: 200,
-            statusMessage: "Success",
-            text: "MOCK RESPONSE (" + svc.URL + ")"
+            statusMessage: 'Success',
+            text: {
+                status:'OK',
+                msg: 'inventory Updated'
+            }
         };
     },
 });

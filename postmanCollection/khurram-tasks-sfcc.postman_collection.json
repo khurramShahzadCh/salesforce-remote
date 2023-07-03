@@ -1,0 +1,69 @@
+{
+	"info": {
+		"_postman_id": "acf828bd-874a-4092-b6e5-17d407c9389f",
+		"name": "khurram-tasks-sfcc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26755432"
+	},
+	"item": [
+		{
+			"name": "webhook-orderStatus",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"orderId\":\"00000001\",\r\n    \"status\":\"shipped\",\r\n    \"signature\":\"Asdf@1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{hostUrl}}/Sites-RefArchGlobal-Site/en_GB/WebHook-OrderUpdates",
+					"host": [
+						"{{hostUrl}}"
+					],
+					"path": [
+						"Sites-RefArchGlobal-Site",
+						"en_GB",
+						"WebHook-OrderUpdates"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product-Oprations",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"productId\":\"008884304030M\",\r\n    \"operation\":\"GET\",\r\n    \"stockLevel\":3001,\r\n    \"inventoryListID\":\"inventory_m\",\r\n    \"userName\":\"xyz@abc.com\",\r\n    \"password\":\"xyzzz\",\r\n    \"client_id\":\"1355a4de-aee8-4aa9-a686-f77856e259fcf\",\r\n    \"clientPassword\":\"qwert\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{hostUrl}}/Sites-RefArchGlobal-Site/en_GB/Product-handleProductOperations",
+					"host": [
+						"{{hostUrl}}"
+					],
+					"path": [
+						"Sites-RefArchGlobal-Site",
+						"en_GB",
+						"Product-handleProductOperations"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

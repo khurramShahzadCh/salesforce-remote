@@ -32,10 +32,10 @@ var ocapiAccessToken = LocalServiceRegistry.createService("http.ocapi.auth", {
  @param {Object} args - The arguments for initializing the service.
  @returns {Object} - The OCAPI operations service.
 */
-var ocapiOprations = LocalServiceRegistry.createService("http.ocapi.internal", {
+var ocapiOperations = LocalServiceRegistry.createService("http.ocapi.internal", {
     createRequest: function (svc, args) {
         var serviceUrl = svc.configuration.credential.URL;
-        switch (args.opration) {
+        switch (args.operation) {
             case 'DELETE':
                 serviceUrl = serviceUrl + 'products/' + args.productId;
                 svc.setRequestMethod("DELETE");
@@ -55,7 +55,7 @@ var ocapiOprations = LocalServiceRegistry.createService("http.ocapi.internal", {
 
         svc.setURL(serviceUrl);
         svc.addHeader("Authorization", "Bearer " + args.BearerToken);
-        if (args.opration == 'UPDATE') {
+        if (args.operation == 'UPDATE') {
             var amount = args.stockLevel;
             args = {};
             args.allocation = {
@@ -72,5 +72,5 @@ var ocapiOprations = LocalServiceRegistry.createService("http.ocapi.internal", {
 
 module.exports = {
     initGetOcapiAccessTokenServices: ocapiAccessToken,
-    initOcapiOprations: ocapiOprations
+    initOcapiOperations: ocapiOperations
 };

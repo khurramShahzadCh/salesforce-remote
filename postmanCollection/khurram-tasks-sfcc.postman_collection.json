@@ -35,28 +35,16 @@
 			"response": []
 		},
 		{
-			"name": "Product-handleProductOperations",
+			"name": "Product-Oprations",
 			"request": {
 				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "Systems12345@:top12345",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "sania.waheed@visionet.com",
-							"type": "string"
-						}
-					]
+					"type": "noauth"
 				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"productId\":\"701643109593M\",\r\n    \"opration\":\"GET\",\r\n    \"stockLevel\":200,\r\n    \"inventoryListID\":\"inventory_m\",\r\n    \"userName\":\"sania.waheed@visionet.com\",\r\n    \"password\":\"Systems12345@\",\r\n    \"client_id\":\"1355a4de-aee8-4aa9-a686-f7656e259fcf\",\r\n    \"clientPassword\":\"top12345\"\r\n}",
+					"raw": "{\r\n    \"productId\":\"008884304030M\",\r\n    \"operation\":\"GET\",\r\n    \"stockLevel\":3001,\r\n    \"inventoryListID\":\"inventory_m\",\r\n    \"userName\":\"xyz@abc.com\",\r\n    \"password\":\"xyzzz\",\r\n    \"client_id\":\"1355a4de-aee8-4aa9-a686-f77856e259fcf\",\r\n    \"clientPassword\":\"qwert\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

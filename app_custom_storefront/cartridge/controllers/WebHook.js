@@ -41,7 +41,7 @@ server.post('OrderUpdates', function (req, res, next) {
                 // we can incorporate additional logic to handle various other order statuses as needed.
                 if (orderStatus.toLowerCase() == 'shipped') {
                     Transaction.wrap(function () {
-                        order.setShippingStatus(0);
+                        order.setShippingStatus(2);
                     });
 
                     //update Inventory
@@ -59,8 +59,19 @@ server.post('OrderUpdates', function (req, res, next) {
                     var result = svc.call(requestBody);
                     if (result.ok) {
                         webHookLogger.debug('Inventory updated successfully in the external system. Order ID: {0}', orderId);
+                        res.json({
+                            success: true,
+                            message: 'shipping status changed and Inventory updated successfully in the external system. Order ID:' + orderId
+                        });
+                        res.setStatusCode(200);
+                        next();
                     } else {
                         webHookLogger.error('Failed to update inventory in the external system. Order ID: {0}, Error: {1}', orderId, result.errorMessage);
+                        res.json({
+                            success: false
+                        });
+                        res.setStatusCode(500);
+                        next();
                     }
 
                 } else {
@@ -72,7 +83,6 @@ server.post('OrderUpdates', function (req, res, next) {
                 errorMessage = 'Order Not Found';
                 throw new Error(errorMessage);
             }
-            res.setStatusCode(200);
         } else {
             webHookLogger.error('Auth Error');
             throw new Error('Authorization Error');

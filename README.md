@@ -1,6 +1,7 @@
 TASK NO 1 : Custom SFCC Script Service
 
 File Location : app_custom_storefront/cartridge/controllers/Product.js
+
 Postman Collection : postmanCollection/khurram-tasks-sfcc.postman_collection.json
 
 Explanation:

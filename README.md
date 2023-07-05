@@ -1,6 +1,7 @@
 Task 3: Performance Optimization
 
 Branch Name : Tasks/task3-Performance-Optimization
+
 File Location : app_custom_storefront/cartridge/scripts/helpers/searchHelpers.js
 
 Explanation:

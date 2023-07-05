@@ -10,13 +10,17 @@ server.extend(module.superModule);
 var Status = require('dw/system/Status');
 
 /**
- * Product-handleProductOperations : The Product-handleProductOperations endpoint
- * @name Base/Product-handleProductOperations
+ * Product-handleProductOperations : this function handles POST requests to perform various operations
+ * (GET, DELETE, UPDATE) on a product by communicating with an external service (specified by ocapiServices).
+ * It validates the request parameters, retrieves an access token, and executes the requested operation on the
+ * product using the obtained access token. It returns appropriate JSON responses based on the operation's outcome
+ * or any encountered errors.
+ * @name Product-handleProductOperations
  * @function
  * @memberof Product
  */
 server.post('handleProductOperations', function (req, res, next) {
-    var Logger = require('dw/system/Logger').getLogger('Product-Oprations', 'oprations');
+    var Logger = require('dw/system/Logger').getLogger('Product-operations', 'operations');
     var errorMessage = '';
     // Parse the incoming payload
     var requestBody = JSON.parse(req.httpParameterMap.getRequestBodyAsString());
@@ -24,7 +28,7 @@ server.post('handleProductOperations', function (req, res, next) {
     // I can write this code in helper methods, but I am writing it here for easier assessment.
 
     var productId = 'productId' in requestBody ? requestBody.productId : null;
-    var opration = 'opration' in requestBody ? requestBody.opration : null;
+    var operation = 'operation' in requestBody ? requestBody.operation : null;
     var stockLevel = 'stockLevel' in requestBody ? requestBody.stockLevel : null;
     var inventoryListID = 'inventoryListID' in requestBody ? requestBody.inventoryListID : null;
     var userName = 'userName' in requestBody ? requestBody.userName : null;
@@ -34,7 +38,7 @@ server.post('handleProductOperations', function (req, res, next) {
 
     try {
         // Validate request Boday
-        if (empty(productId) || empty(opration) || empty(userName) || empty(password) || empty(client_id) || empty(clientPassword)) {
+        if (empty(productId) || empty(operation) || empty(userName) || empty(password) || empty(client_id) || empty(clientPassword)) {
             res.setStatusCode(400);
             Logger.error('Missing Required body Param');
             errorMessage = 'Missing Required body Params';
@@ -61,13 +65,13 @@ server.post('handleProductOperations', function (req, res, next) {
             */
 
             var access_token = JSON.parse(result.object.text).access_token;
-            var newScv = ocapiServices.initOcapiOprations;
-            if (opration == 'UPDATE' && (empty(stockLevel) || empty(inventoryListID))) {
+            var newScv = ocapiServices.initOcapiOperations;
+            if (operation == 'UPDATE' && (empty(stockLevel) || empty(inventoryListID))) {
                 throw new Error('stockLevel or inventoryListID must not be empty');
             }
             requestBody = {
                 productId: productId,
-                opration: opration,
+                operation: operation,
                 stockLevel: stockLevel,
                 inventoryListID:inventoryListID,
                 BearerToken: access_token
@@ -77,7 +81,7 @@ server.post('handleProductOperations', function (req, res, next) {
             if (result.status == 'ERROR') {
                 throw new Error(result.errorMessage);
             } else if (result.status == 'OK') {
-                if (opration == 'GET') {
+                if (operation == 'GET') {
                     var product = JSON.parse(result.object.text);
                     res.setStatusCode(200);
                     res.json({
@@ -85,7 +89,7 @@ server.post('handleProductOperations', function (req, res, next) {
                         product: product
                     });
                     next();
-                } else if (opration == 'DELETE') {
+                } else if (operation == 'DELETE') {
                     res.setStatusCode(200);
                     res.json({
                         success: true,
@@ -93,7 +97,7 @@ server.post('handleProductOperations', function (req, res, next) {
                     });
                     next();
 
-                } else if (opration == 'UPDATE') {
+                } else if (operation == 'UPDATE') {
                     var product = JSON.parse(result.object.text);
                     res.setStatusCode(200);
                     res.json({

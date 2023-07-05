@@ -1,7 +1,9 @@
 Task 4: Third-Party API Integration:
 
 Branch Name : Tasks/Task4-Third-Party-API-Integration
+
 File Location : app_custom_storefront/cartridge/scripts/jobs/updateReviews.js
+
 Services : salesforce-remote/servicesXml
 
 Storing reviews on a product's custom attributes may not be the best practice due to limitations on data storage in SFCC (Salesforce Commerce Cloud). Another option is to save the reviews in custom objects using the product IDs as keys, but there may also be limitations on the number of custom objects that can be created.
